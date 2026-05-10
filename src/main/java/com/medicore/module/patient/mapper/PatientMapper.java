@@ -3,35 +3,67 @@ package com.medicore.module.patient.mapper;
 import com.medicore.module.patient.dto.PatientRequest;
 import com.medicore.module.patient.dto.PatientResponse;
 import com.medicore.module.patient.entity.Patient;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring")
-public interface PatientMapper {
+@Component
+public class PatientMapper {
 
-    PatientMapper INSTANCE = Mappers.getMapper(PatientMapper.class);
+    public PatientResponse toResponse(Patient entity) {
+        if (entity == null) {
+            return null;
+        }
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "createdBy", ignore = true)
-    PatientResponse toResponse(Patient entity);
+        PatientResponse response = new PatientResponse();
+        response.setId(entity.getId());
+        response.setFullName(entity.getFullName());
+        response.setDateOfBirth(entity.getDateOfBirth());
+        response.setGender(entity.getGender() != null ? entity.getGender().name() : null);
+        response.setPhone(entity.getPhone());
+        response.setAddress(entity.getAddress());
+        response.setEmail(entity.getEmail());
+        response.setUserId(entity.getUserId());
+        response.setInsuranceNumber(entity.getInsuranceNumber());
+        response.setBloodType(entity.getBloodType());
+        response.setCreatedAt(entity.getCreatedAt());
+        response.setUpdatedAt(entity.getUpdatedAt());
+        response.setCreatedBy(entity.getCreatedBy());
+        return response;
+    }
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "createdBy", ignore = true)
-    @Mapping(target = "updatedBy", ignore = true)
-    @Mapping(target = "deleted", ignore = true)
-    Patient toEntity(PatientRequest request);
+    public Patient toEntity(PatientRequest request) {
+        if (request == null) {
+            return null;
+        }
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "createdBy", ignore = true)
-    @Mapping(target = "updatedBy", ignore = true)
-    @Mapping(target = "deleted", ignore = true)
-    void updateEntity(PatientRequest request, @MappingTarget Patient entity);
+        Patient patient = new Patient();
+        updateEntity(request, patient);
+        return patient;
+    }
+
+    public void updateEntity(PatientRequest request, Patient entity) {
+        if (request == null || entity == null) {
+            return;
+        }
+
+        entity.setFullName(request.getFullName());
+        entity.setDateOfBirth(request.getDateOfBirth());
+        entity.setGender(parseGender(request.getGender()));
+        entity.setPhone(request.getPhone());
+        entity.setAddress(request.getAddress());
+        entity.setEmail(request.getEmail());
+        entity.setInsuranceNumber(request.getInsuranceNumber());
+        entity.setBloodType(request.getBloodType());
+    }
+
+    private Patient.Gender parseGender(String gender) {
+        if (gender == null || gender.isBlank()) {
+            return null;
+        }
+
+        try {
+            return Patient.Gender.valueOf(gender.trim().toUpperCase());
+        } catch (IllegalArgumentException ex) {
+            return null;
+        }
+    }
 }

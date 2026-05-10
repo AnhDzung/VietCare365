@@ -23,7 +23,7 @@ public class User extends BaseEntity {
     private Boolean active = true;
 
     public enum Role {
-        ADMIN, DOCTOR, NURSE, RECEPTIONIST
+        ADMIN, DOCTOR, NURSE, RECEPTIONIST, PATIENT
     }
 
     public User() {

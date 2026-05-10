@@ -47,12 +47,13 @@ mvn spring-boot:run
 ```
 
 ### 5. Access Application
-- URL: http://localhost:8080
+- Base URL (context path): http://localhost:8081/VietCare365
+- Home page: http://localhost:8081/VietCare365/home
 - Default Login: 
-  - Username: `admin` | Password: `password`
-  - Username: `doctor` | Password: `password`
-  - Username: `nurse` | Password: `password`
-  - Username: `receptionist` | Password: `password`
+  - Username: `admin1` | Password: `Admin@123` (ADMIN)
+  - Username: `doctor` | Password: `Admin@123` (DOCTOR)
+  - Username: `nurse` | Password: `Admin@123` (NURSE)
+  - Username: `receptionist` | Password: `Admin@123` (RECEPTIONIST)
 
 ## Project Structure
 

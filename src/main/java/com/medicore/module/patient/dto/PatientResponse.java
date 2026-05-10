@@ -19,6 +19,8 @@ public class PatientResponse {
 
     private String email;
 
+    private String userId;
+
     private String insuranceNumber;
 
     private String bloodType;
@@ -32,7 +34,7 @@ public class PatientResponse {
     public PatientResponse() {
     }
 
-    public PatientResponse(String id, String fullName, LocalDate dateOfBirth, String gender, String phone, String address, String email, String insuranceNumber, String bloodType, LocalDateTime createdAt, LocalDateTime updatedAt, String createdBy) {
+    public PatientResponse(String id, String fullName, LocalDate dateOfBirth, String gender, String phone, String address, String email, String userId, String insuranceNumber, String bloodType, LocalDateTime createdAt, LocalDateTime updatedAt, String createdBy) {
         this.id = id;
         this.fullName = fullName;
         this.dateOfBirth = dateOfBirth;
@@ -40,6 +42,7 @@ public class PatientResponse {
         this.phone = phone;
         this.address = address;
         this.email = email;
+        this.userId = userId;
         this.insuranceNumber = insuranceNumber;
         this.bloodType = bloodType;
         this.createdAt = createdAt;
@@ -101,6 +104,14 @@ public class PatientResponse {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getInsuranceNumber() {

@@ -11,10 +11,7 @@ CREATE TABLE IF NOT EXISTS users (
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     created_by VARCHAR(255),
     updated_by VARCHAR(255),
-    deleted TINYINT(1) DEFAULT 0,
-    ENGINE=InnoDB,
-    CHARSET=utf8mb4,
-    COLLATE=utf8mb4_unicode_ci
+    deleted TINYINT(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Patients table
@@ -32,10 +29,7 @@ CREATE TABLE IF NOT EXISTS patients (
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     created_by VARCHAR(255),
     updated_by VARCHAR(255),
-    deleted TINYINT(1) DEFAULT 0,
-    ENGINE=InnoDB,
-    CHARSET=utf8mb4,
-    COLLATE=utf8mb4_unicode_ci
+    deleted TINYINT(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Doctors table
@@ -52,10 +46,7 @@ CREATE TABLE IF NOT EXISTS doctors (
     created_by VARCHAR(255),
     updated_by VARCHAR(255),
     deleted TINYINT(1) DEFAULT 0,
-    FOREIGN KEY (user_id) REFERENCES users(id),
-    ENGINE=InnoDB,
-    CHARSET=utf8mb4,
-    COLLATE=utf8mb4_unicode_ci
+    FOREIGN KEY (user_id) REFERENCES users(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Appointments table
@@ -72,10 +63,7 @@ CREATE TABLE IF NOT EXISTS appointments (
     updated_by VARCHAR(255),
     deleted TINYINT(1) DEFAULT 0,
     FOREIGN KEY (patient_id) REFERENCES patients(id),
-    FOREIGN KEY (doctor_id) REFERENCES doctors(id),
-    ENGINE=InnoDB,
-    CHARSET=utf8mb4,
-    COLLATE=utf8mb4_unicode_ci
+    FOREIGN KEY (doctor_id) REFERENCES doctors(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Medical Records table
@@ -91,10 +79,7 @@ CREATE TABLE IF NOT EXISTS medical_records (
     created_by VARCHAR(255),
     updated_by VARCHAR(255),
     deleted TINYINT(1) DEFAULT 0,
-    FOREIGN KEY (appointment_id) REFERENCES appointments(id),
-    ENGINE=InnoDB,
-    CHARSET=utf8mb4,
-    COLLATE=utf8mb4_unicode_ci
+    FOREIGN KEY (appointment_id) REFERENCES appointments(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Medicines table
@@ -109,10 +94,7 @@ CREATE TABLE IF NOT EXISTS medicines (
     updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     created_by VARCHAR(255),
     updated_by VARCHAR(255),
-    deleted TINYINT(1) DEFAULT 0,
-    ENGINE=InnoDB,
-    CHARSET=utf8mb4,
-    COLLATE=utf8mb4_unicode_ci
+    deleted TINYINT(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Prescriptions table
@@ -125,10 +107,7 @@ CREATE TABLE IF NOT EXISTS prescriptions (
     created_by VARCHAR(255),
     updated_by VARCHAR(255),
     deleted TINYINT(1) DEFAULT 0,
-    FOREIGN KEY (medical_record_id) REFERENCES medical_records(id),
-    ENGINE=InnoDB,
-    CHARSET=utf8mb4,
-    COLLATE=utf8mb4_unicode_ci
+    FOREIGN KEY (medical_record_id) REFERENCES medical_records(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Prescription Items table
@@ -145,10 +124,7 @@ CREATE TABLE IF NOT EXISTS prescription_items (
     updated_by VARCHAR(255),
     deleted TINYINT(1) DEFAULT 0,
     FOREIGN KEY (prescription_id) REFERENCES prescriptions(id),
-    FOREIGN KEY (medicine_id) REFERENCES medicines(id),
-    ENGINE=InnoDB,
-    CHARSET=utf8mb4,
-    COLLATE=utf8mb4_unicode_ci
+    FOREIGN KEY (medicine_id) REFERENCES medicines(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Invoices table
@@ -166,10 +142,7 @@ CREATE TABLE IF NOT EXISTS invoices (
     updated_by VARCHAR(255),
     deleted TINYINT(1) DEFAULT 0,
     FOREIGN KEY (patient_id) REFERENCES patients(id),
-    FOREIGN KEY (appointment_id) REFERENCES appointments(id),
-    ENGINE=InnoDB,
-    CHARSET=utf8mb4,
-    COLLATE=utf8mb4_unicode_ci
+    FOREIGN KEY (appointment_id) REFERENCES appointments(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Audit Logs table
@@ -181,10 +154,7 @@ CREATE TABLE IF NOT EXISTS audit_logs (
     entity_id VARCHAR(36),
     old_value LONGTEXT,
     new_value LONGTEXT,
-    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    ENGINE=InnoDB,
-    CHARSET=utf8mb4,
-    COLLATE=utf8mb4_unicode_ci
+    created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Create Indexes

@@ -2,9 +2,9 @@
 INSERT INTO users (id, username, password, email, full_name, role, active, created_at, updated_at, deleted)
 VALUES 
 ('user-admin-001', 'admin', '$2a$10$slYQmyNdGzin7olVN3q9be4DlH.PKZbv5H8KnzzVgXXbVxzy990dm', 'admin@vietcare365.com', 'Quản trị viên', 'ADMIN', 1, NOW(), NOW(), 0),
-('user-doctor-001', 'doctor', '$2a$10$slYQmyNdGzin7olVN3q9be4DlH.PKZbv5H8KnzzVgXXbVxzy990dm', 'doctor@vietcare365.com', 'Bác sĩ Nguyễn Văn A', 'DOCTOR', 1, NOW(), NOW(), 0),
-('user-nurse-001', 'nurse', '$2a$10$slYQmyNdGzin7olVN3q9be4DlH.PKZbv5H8KnzzVgXXbVxzy990dm', 'nurse@vietcare365.com', 'Y tá Trần Thị B', 'NURSE', 1, NOW(), NOW(), 0),
-('user-receptionist-001', 'receptionist', '$2a$10$slYQmyNdGzin7olVN3q9be4DlH.PKZbv5H8KnzzVgXXbVxzy990dm', 'receptionist@vietcare365.com', 'Lễ tân Lê Văn C', 'RECEPTIONIST', 1, NOW(), NOW(), 0)
+('user-doctor-001', 'doctor', '$2a$10$xsidQmK8IUgRmggq548yu.2zq9U1.kaqJtyYe3S2elSi6liVRnq3i', 'doctor@vietcare365.com', 'Bác sĩ Nguyễn Văn A', 'DOCTOR', 1, NOW(), NOW(), 0),
+('user-nurse-001', 'nurse', '$2a$10$xsidQmK8IUgRmggq548yu.2zq9U1.kaqJtyYe3S2elSi6liVRnq3i', 'nurse@vietcare365.com', 'Y tá Trần Thị B', 'NURSE', 1, NOW(), NOW(), 0),
+('user-receptionist-001', 'receptionist', '$2a$10$xsidQmK8IUgRmggq548yu.2zq9U1.kaqJtyYe3S2elSi6liVRnq3i', 'receptionist@vietcare365.com', 'Lễ tân Lê Văn C', 'RECEPTIONIST', 1, NOW(), NOW(), 0)
 ON DUPLICATE KEY UPDATE updated_at = VALUES(updated_at);
 
 -- Insert test doctors

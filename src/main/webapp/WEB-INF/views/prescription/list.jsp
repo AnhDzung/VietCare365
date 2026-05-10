@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -17,9 +18,31 @@
             
             <div class="container-fluid p-4">
                 <h1 class="mb-4">Danh sách kê đơn</h1>
+                <div class="mb-3">
+                    <a href="${pageContext.request.contextPath}/prescriptions/create" class="btn btn-primary">Tạo kê đơn</a>
+                </div>
                 <div class="card">
                     <div class="card-body">
-                        <p class="text-muted">Chức năng đang phát triển...</p>
+                        <table class="table table-striped">
+                            <thead>
+                                <tr><th>Mã hồ sơ</th><th>Ghi chú</th><th>Ngày</th><th></th></tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="p" items="${page.content}">
+                                    <tr>
+                                        <td>${p.medicalRecordId}</td>
+                                        <td>${p.note}</td>
+                                        <td>${p.createdAt}</td>
+                                        <td>
+                                            <a href="${pageContext.request.contextPath}/prescriptions/edit/${p.id}" class="btn btn-sm btn-outline-primary">Sửa</a>
+                                            <form method="post" action="${pageContext.request.contextPath}/prescriptions/delete/${p.id}" style="display:inline">
+                                                <button class="btn btn-sm btn-outline-danger" onclick="return confirm('Xóa?')">Xóa</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

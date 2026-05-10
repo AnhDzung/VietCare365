@@ -3,31 +3,51 @@ package com.medicore.module.doctor.mapper;
 import com.medicore.module.doctor.dto.DoctorRequest;
 import com.medicore.module.doctor.dto.DoctorResponse;
 import com.medicore.module.doctor.entity.Doctor;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-import org.mapstruct.MappingTarget;
-import org.mapstruct.factory.Mappers;
+import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring")
-public interface DoctorMapper {
+@Component
+public class DoctorMapper {
 
-    DoctorMapper INSTANCE = Mappers.getMapper(DoctorMapper.class);
+    public DoctorResponse toResponse(Doctor entity) {
+        if (entity == null) {
+            return null;
+        }
 
-    DoctorResponse toResponse(Doctor entity);
+        DoctorResponse response = new DoctorResponse();
+        response.setId(entity.getId());
+        response.setUserId(entity.getUserId());
+        response.setFullName(entity.getFullName());
+        response.setSpecialization(entity.getSpecialization());
+        response.setLicenseNumber(entity.getLicenseNumber());
+        response.setPhone(entity.getPhone());
+        response.setEmail(entity.getEmail());
+        response.setCreatedAt(entity.getCreatedAt());
+        response.setUpdatedAt(entity.getUpdatedAt());
+        response.setCreatedBy(entity.getCreatedBy());
+        response.setUpdatedBy(entity.getUpdatedBy());
+        return response;
+    }
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "createdBy", ignore = true)
-    @Mapping(target = "updatedBy", ignore = true)
-    @Mapping(target = "deleted", ignore = true)
-    Doctor toEntity(DoctorRequest request);
+    public Doctor toEntity(DoctorRequest request) {
+        if (request == null) {
+            return null;
+        }
 
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "createdAt", ignore = true)
-    @Mapping(target = "updatedAt", ignore = true)
-    @Mapping(target = "createdBy", ignore = true)
-    @Mapping(target = "updatedBy", ignore = true)
-    @Mapping(target = "deleted", ignore = true)
-    void updateEntity(DoctorRequest request, @MappingTarget Doctor entity);
+        Doctor doctor = new Doctor();
+        updateEntity(request, doctor);
+        return doctor;
+    }
+
+    public void updateEntity(DoctorRequest request, Doctor entity) {
+        if (request == null || entity == null) {
+            return;
+        }
+
+        entity.setUserId(request.getUserId());
+        entity.setFullName(request.getFullName());
+        entity.setSpecialization(request.getSpecialization());
+        entity.setLicenseNumber(request.getLicenseNumber());
+        entity.setPhone(request.getPhone());
+        entity.setEmail(request.getEmail());
+    }
 }

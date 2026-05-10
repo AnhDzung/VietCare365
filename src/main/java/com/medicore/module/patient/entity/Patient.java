@@ -23,6 +23,9 @@ public class Patient extends BaseEntity {
 
     private String email;
 
+    @Column(name = "user_id")
+    private String userId;
+
     private String insuranceNumber;
 
     private String bloodType;
@@ -80,6 +83,14 @@ public class Patient extends BaseEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getInsuranceNumber() {

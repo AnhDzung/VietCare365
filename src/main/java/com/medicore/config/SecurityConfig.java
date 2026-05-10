@@ -49,7 +49,10 @@ public class SecurityConfig {
                                 new AntPathRequestMatcher("/resources/**"),
                                 new AntPathRequestMatcher("/webjars/**"),
                                 new AntPathRequestMatcher("/error"),
-                                new AntPathRequestMatcher("/error/**")
+                                new AntPathRequestMatcher("/error/**"),
+                                new AntPathRequestMatcher("/"),
+                                new AntPathRequestMatcher("/home"),
+                                new AntPathRequestMatcher("/home/**")
                         ).permitAll()
                         .anyRequest().authenticated()
                 )
@@ -60,7 +63,7 @@ public class SecurityConfig {
                 .formLogin(form -> form
                         .loginPage("/auth/login")
                         .loginProcessingUrl("/auth/login")
-                        .defaultSuccessUrl("/dashboard", true)
+                        .defaultSuccessUrl("/home", true)
                         .failureUrl("/auth/login?error=true")
                         .permitAll()
                 )
