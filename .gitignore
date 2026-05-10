@@ -1,0 +1,41 @@
+# Maven
+target/
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+dependency-reduced-pom.xml
+buildNumber.properties
+.maven.metadata.xml
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.DS_Store
+*.iml
+*.iws
+*.ipr
+
+# Build
+.classpath
+.project
+.settings/
+bin/
+out/
+
+# Spring Boot
+application-local.properties
+application-local.yml
+
+# Logs
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite
